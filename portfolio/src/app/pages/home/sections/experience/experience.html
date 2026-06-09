@@ -1,0 +1,59 @@
+<section id="experience" class="section experience">
+  <div class="container-x">
+    <div class="text-center reveal">
+      <span class="eyebrow"><i class="bi bi-briefcase"></i> Experience</span>
+      <h2 class="section-title">A journey of <span class="gradient-text">growth & impact</span></h2>
+      <p class="section-subtitle">
+        3+ years across product companies, agencies and freelance — building real-world apps.
+      </p>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-line"></div>
+      @for (exp of portfolio.experiences; track exp.id; let i = $index) {
+        <div class="timeline-item reveal" [class.right]="i % 2 === 1">
+          <div class="timeline-dot">
+            <mat-icon>work</mat-icon>
+          </div>
+          <div class="timeline-card">
+            <div class="card-top">
+              <span class="period">
+                <i class="bi bi-calendar3"></i> {{ exp.period }}
+              </span>
+              <span class="type-pill" [class]="'type-' + exp.type">
+                {{ typeLabel(exp.type) }}
+              </span>
+            </div>
+
+            <h3 class="role">{{ exp.role }}</h3>
+            <div class="company">
+              <i class="bi bi-building"></i>
+              <span>{{ exp.company }}</span>
+              <span class="dot-sep">·</span>
+              <i class="bi bi-geo-alt"></i>
+              <span>{{ exp.location }}</span>
+            </div>
+
+            <p class="description">{{ exp.description }}</p>
+
+            <h4 class="achieve-title">Key Achievements</h4>
+            <ul class="achieve-list">
+              @for (a of exp.achievements; track a) {
+                <li>
+                  <i class="bi bi-trophy"></i>
+                  <span>{{ a }}</span>
+                </li>
+              }
+            </ul>
+
+            <div class="stack">
+              @for (s of exp.stack; track s) {
+                <span class="stack-pill">{{ s }}</span>
+              }
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

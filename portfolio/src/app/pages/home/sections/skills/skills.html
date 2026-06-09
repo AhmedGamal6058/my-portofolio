@@ -1,0 +1,46 @@
+<section id="skills" class="section skills">
+  <div class="container-x">
+    <div class="text-center reveal">
+      <span class="eyebrow"><i class="bi bi-mortarboard"></i> Skills & Expertise</span>
+      <h2 class="section-title">A toolbox built for <span class="gradient-text">modern Angular</span></h2>
+      <p class="section-subtitle">
+        3+ years of hands-on production experience across the entire frontend stack.
+      </p>
+    </div>
+
+    <div class="category-tabs reveal">
+      @for (cat of categories; track cat.id) {
+        <button
+          type="button"
+          class="cat-tab"
+          [class.active]="activeCategory() === cat.id"
+          (click)="setCategory(cat.id)">
+          <mat-icon>{{ cat.icon }}</mat-icon>
+          <span>{{ cat.label }}</span>
+          <span class="count">{{ countFor(cat.id) }}</span>
+        </button>
+      }
+    </div>
+
+    <div class="skills-grid">
+      @for (skill of filteredSkills(); track trackByName($index, skill); let i = $index) {
+        <div class="skill-card reveal" [style.animation-delay.ms]="i * 60">
+          <div class="skill-header">
+            <div class="skill-icon">
+              <i class="bi" [ngClass]="skill.icon"></i>
+            </div>
+            <div class="skill-info">
+              <h4 class="skill-name">{{ skill.name }}</h4>
+              <span class="skill-meta">{{ skill.years }}+ year{{ skill.years > 1 ? 's' : '' }}</span>
+            </div>
+            <span class="skill-level" [class]="'lvl-' + skill.level">{{ skill.level }}</span>
+          </div>
+
+          <div class="skill-bar">
+            <span class="bar-fill" [style.width.%]="percentMap[skill.level]"></span>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

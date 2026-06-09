@@ -1,0 +1,104 @@
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+.app-shell {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+}
+
+.main-content {
+  flex: 1;
+  position: relative;
+  z-index: 2;
+}
+
+/* ============================================
+   Animated Background Orbs
+   ============================================ */
+.bg-orbs {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.5;
+  animation: float 18s ease-in-out infinite;
+}
+
+.orb-1 {
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, #6366f1 0%, transparent 70%);
+  top: -120px;
+  left: -120px;
+}
+.orb-2 {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, #06b6d4 0%, transparent 70%);
+  top: 35%;
+  right: -120px;
+  animation-delay: -6s;
+}
+.orb-3 {
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, #ec4899 0%, transparent 70%);
+  bottom: -100px;
+  left: 30%;
+  animation-delay: -12s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%      { transform: translate(60px, -50px) scale(1.1); }
+  66%      { transform: translate(-40px, 40px) scale(0.95); }
+}
+
+/* ============================================
+   Custom Cursor
+   ============================================ */
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.25s var(--ease), width 0.2s, height 0.2s, border-color 0.2s;
+  will-change: transform;
+}
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--primary-light);
+  margin: -4px 0 0 -4px;
+}
+.cursor-ring {
+  width: 36px;
+  height: 36px;
+  border: 2px solid var(--primary);
+  margin: -18px 0 0 -18px;
+  transition: opacity 0.25s var(--ease), width 0.2s, height 0.2s, transform 0.05s linear;
+}
+.cursor-dot.visible,
+.cursor-ring.visible {
+  opacity: 1;
+}
+
+@media (pointer: coarse), (max-width: 768px) {
+  .cursor-dot, .cursor-ring { display: none; }
+}

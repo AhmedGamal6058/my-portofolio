@@ -1,0 +1,76 @@
+<header class="navbar" [class.scrolled]="scrolled()">
+  <div class="container-x nav-inner">
+    <a href="#home" class="brand" (click)="scrollTo('#home', $event)" aria-label="Home">
+      <span class="brand-mark">
+        <span class="brand-mark-inner">{{ '< />' }}</span>
+      </span>
+      <span class="brand-text">
+        <span class="brand-name gradient-text">Ahmed<span class="dot">.</span>dev</span>
+        <span class="brand-sub">Angular · Frontend</span>
+      </span>
+    </a>
+
+    <nav class="nav-links d-none d-lg-flex" aria-label="Primary">
+      @for (link of links; track link.href) {
+        <a
+          [href]="link.href"
+          class="nav-link"
+          [class.active]="activeSection() === link.href.replace('#', '')"
+          (click)="scrollTo(link.href, $event)">
+          <span class="link-text">{{ link.label }}</span>
+          <span class="link-underline"></span>
+        </a>
+      }
+    </nav>
+
+    <div class="nav-actions">
+      <button
+        type="button"
+        class="icon-btn theme-toggle"
+        mat-icon-button
+        [matTooltip]="themeService.theme() === 'dark' ? 'Switch to light' : 'Switch to dark'"
+        (click)="themeService.toggle()"
+        aria-label="Toggle theme">
+        <mat-icon>{{ themeService.theme() === 'dark' ? 'light_mode' : 'dark_mode' }}</mat-icon>
+      </button>
+
+      <a
+        href="#contact"
+        class="btn btn-primary cta d-none d-md-inline-flex"
+        (click)="scrollTo('#contact', $event)">
+        <i class="bi bi-send"></i>
+        Let's Talk
+      </a>
+
+      <button
+        type="button"
+        class="icon-btn d-lg-none menu-btn"
+        (click)="toggleMobile()"
+        aria-label="Open menu">
+        <mat-icon>{{ mobileOpen() ? 'close' : 'menu' }}</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer" [class.open]="mobileOpen()">
+    <nav class="mobile-nav" aria-label="Mobile">
+      @for (link of links; track link.href) {
+        <a
+          [href]="link.href"
+          class="mobile-link"
+          [class.active]="activeSection() === link.href.replace('#', '')"
+          (click)="scrollTo(link.href, $event)">
+          <mat-icon>{{ link.icon }}</mat-icon>
+          <span>{{ link.label }}</span>
+        </a>
+      }
+      <a
+        href="#contact"
+        class="btn btn-primary mt-3 w-100 justify-content-center"
+        (click)="scrollTo('#contact', $event)">
+        <i class="bi bi-send me-2"></i> Let's Talk
+      </a>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,37 @@
+<section id="testimonials" class="section testimonials">
+  <div class="container-x">
+    <div class="text-center reveal">
+      <span class="eyebrow"><i class="bi bi-chat-quote"></i> Testimonials</span>
+      <h2 class="section-title">What <span class="gradient-text">clients & teams</span> say</h2>
+      <p class="section-subtitle">
+        Honest feedback from people I've had the pleasure to work with.
+      </p>
+    </div>
+
+    <div class="testimonials-grid">
+      @for (t of portfolio.testimonials; track t.id; let i = $index) {
+        <article class="testimonial-card reveal" [style.animation-delay.ms]="i * 100">
+          <div class="quote-icon">
+            <mat-icon>format_quote</mat-icon>
+          </div>
+
+          <div class="rating">
+            @for (s of starsArray(t.rating); track $index) {
+              <i class="bi bi-star-fill"></i>
+            }
+          </div>
+
+          <p class="message">"{{ t.message }}"</p>
+
+          <div class="author">
+            <div class="avatar">{{ t.avatar }}</div>
+            <div class="author-info">
+              <h4 class="name">{{ t.name }}</h4>
+              <p class="role">{{ t.role }} · {{ t.company }}</p>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

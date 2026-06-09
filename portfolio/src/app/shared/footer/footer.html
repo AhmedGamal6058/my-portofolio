@@ -1,0 +1,61 @@
+<footer class="footer">
+  <div class="container-x">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#home" class="brand">
+          <span class="brand-mark">{{ '< />' }}</span>
+          <span class="brand-text gradient-text">Ahmed.dev</span>
+        </a>
+        <p class="brand-desc">
+          {{ portfolio.bio }}
+        </p>
+        <div class="status-pill">
+          <span class="dot"></span>
+          Available for new opportunities
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h6 class="col-title">Quick Links</h6>
+        <ul class="col-list">
+          @for (link of quickLinks; track link.href) {
+            <li><a [href]="link.href">{{ link.label }}</a></li>
+          }
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h6 class="col-title">Services</h6>
+        <ul class="col-list">
+          @for (service of services; track service) {
+            <li><span>{{ service }}</span></li>
+          }
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h6 class="col-title">Connect</h6>
+        <ul class="col-list social-list">
+          @for (s of portfolio.socials; track s.url) {
+            <li>
+              <a [href]="s.url" target="_blank" rel="noopener" [attr.aria-label]="s.name">
+                <i class="bi" [ngClass]="s.icon"></i>
+                <span>{{ s.name }}</span>
+              </a>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="copy">
+        © {{ year }} {{ portfolio.name }} — Crafted with
+        <i class="bi bi-heart-fill text-danger"></i> using Angular, Material &amp; Bootstrap.
+      </p>
+      <a href="#home" class="back-top" aria-label="Back to top">
+        <i class="bi bi-arrow-up"></i>
+      </a>
+    </div>
+  </div>
+</footer>

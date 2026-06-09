@@ -1,0 +1,66 @@
+<div class="dialog-container">
+  <button class="close-btn" (click)="close()" aria-label="Close">
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <div class="dialog-hero" [style.background]="gradientFor(project.image)">
+    <div class="hero-pattern"></div>
+    <div class="hero-content">
+      <div class="hero-meta">
+        <span class="meta-pill">
+          <i class="bi bi-calendar3"></i> {{ project.year }}
+        </span>
+        <span class="meta-pill">
+          <i class="bi bi-tag-fill"></i> {{ project.category }}
+        </span>
+        @if (project.client) {
+          <span class="meta-pill">
+            <i class="bi bi-building"></i> {{ project.client }}
+          </span>
+        }
+      </div>
+      <h2 class="dialog-title">{{ project.title }}</h2>
+    </div>
+  </div>
+
+  <div class="dialog-body">
+    <p class="dialog-description">{{ project.description }}</p>
+
+    <h4 class="section-label">
+      <mat-icon>auto_awesome</mat-icon> Key Features
+    </h4>
+    <ul class="features-list">
+      @for (f of project.features; track f) {
+        <li>
+          <i class="bi bi-check2-circle"></i>
+          <span>{{ f }}</span>
+        </li>
+      }
+    </ul>
+
+    <h4 class="section-label">
+      <mat-icon>layers</mat-icon> Tech Stack
+    </h4>
+    <div class="tags-grid">
+      @for (t of project.tags; track t) {
+        <span class="tech-tag">{{ t }}</span>
+      }
+    </div>
+
+    <div class="dialog-actions">
+      @if (project.demoUrl) {
+        <a [href]="project.demoUrl" target="_blank" rel="noopener" class="btn btn-primary">
+          <i class="bi bi-box-arrow-up-right"></i> Live Demo
+        </a>
+      }
+      @if (project.repoUrl) {
+        <a [href]="project.repoUrl" target="_blank" rel="noopener" class="btn btn-outline-light">
+          <i class="bi bi-github"></i> Source Code
+        </a>
+      }
+      <button class="btn btn-ghost" (click)="close()">
+        <i class="bi bi-x-lg"></i> Close
+      </button>
+    </div>
+  </div>
+</div>

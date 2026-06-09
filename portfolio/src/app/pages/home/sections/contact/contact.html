@@ -1,0 +1,142 @@
+<section id="contact" class="section contact">
+  <div class="container-x">
+    <div class="text-center reveal">
+      <span class="eyebrow"><i class="bi bi-send"></i> Get in touch</span>
+      <h2 class="section-title">Let's build something <span class="gradient-text">amazing together</span></h2>
+      <p class="section-subtitle">
+        Have a project in mind, a job opportunity, or just want to say hi? Drop me a message.
+      </p>
+    </div>
+
+    <div class="row g-4 contact-row">
+      <!-- Contact info -->
+      <div class="col-lg-5 reveal">
+        <div class="info-card">
+          <h3 class="info-title">
+            <span class="gradient-text">{{ portfolio.name }}</span>
+          </h3>
+          <p class="info-sub">{{ portfolio.role }}</p>
+          <p class="info-text">
+            I'm always open to discussing product design, development work, or
+            partnership opportunities. Let's chat!
+          </p>
+
+          <div class="info-list">
+            @for (item of contactInfo; track item.label) {
+              <a [href]="item.href" class="info-item">
+                <div class="info-icon">
+                  <i class="bi" [ngClass]="item.icon"></i>
+                </div>
+                <div>
+                  <span class="info-label">{{ item.label }}</span>
+                  <span class="info-value">{{ item.value }}</span>
+                </div>
+              </a>
+            }
+          </div>
+
+          <div class="social-strip">
+            <span class="strip-label">Find me on</span>
+            <div class="strip-icons">
+              @for (s of portfolio.socials; track s.url) {
+                <a [href]="s.url" target="_blank" rel="noopener" class="strip-icon" [attr.aria-label]="s.name">
+                  <i class="bi" [ngClass]="s.icon"></i>
+                </a>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="col-lg-7 reveal">
+        <form class="contact-form" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <mat-form-field>
+                <mat-label>Your name *</mat-label>
+                <input matInput formControlName="name" placeholder="John Doe" autocomplete="name" />
+                <mat-icon matPrefix>person</mat-icon>
+                @if (form.get('name')?.hasError('required') && form.get('name')?.touched) {
+                  <mat-error>Name is required</mat-error>
+                }
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field>
+                <mat-label>Email *</mat-label>
+                <input matInput type="email" formControlName="email" placeholder="you@example.com" autocomplete="email" />
+                <mat-icon matPrefix>email</mat-icon>
+                @if (form.get('email')?.hasError('required') && form.get('email')?.touched) {
+                  <mat-error>Email is required</mat-error>
+                }
+                @if (form.get('email')?.hasError('email') && form.get('email')?.touched) {
+                  <mat-error>Please enter a valid email</mat-error>
+                }
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-md-8">
+              <mat-form-field>
+                <mat-label>Subject *</mat-label>
+                <input matInput formControlName="subject" placeholder="Project collaboration" />
+                <mat-icon matPrefix>subject</mat-icon>
+                @if (form.get('subject')?.hasError('required') && form.get('subject')?.touched) {
+                  <mat-error>Subject is required</mat-error>
+                }
+              </mat-form-field>
+            </div>
+            <div class="col-md-4">
+              <mat-form-field>
+                <mat-label>Budget</mat-label>
+                <mat-select formControlName="budget">
+                  @for (opt of budgetOptions; track opt.value) {
+                    <mat-option [value]="opt.value">{{ opt.label }}</mat-option>
+                  }
+                </mat-select>
+                <mat-icon matPrefix>payments</mat-icon>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <mat-form-field>
+            <mat-label>Your message *</mat-label>
+            <textarea matInput formControlName="message" rows="5" placeholder="Tell me about your project..."></textarea>
+            <mat-icon matPrefix>chat</mat-icon>
+            @if (form.get('message')?.hasError('required') && form.get('message')?.touched) {
+              <mat-error>Message is required</mat-error>
+            }
+            @if (form.get('message')?.hasError('minlength') && form.get('message')?.touched) {
+              <mat-error>At least 10 characters</mat-error>
+            }
+          </mat-form-field>
+
+          <div class="form-actions">
+            <button
+              type="submit"
+              class="btn btn-primary submit-btn"
+              [disabled]="loading()">
+              @if (loading()) {
+                <mat-spinner diameter="18" mode="indeterminate"></mat-spinner>
+                <span class="ms-2">Sending…</span>
+              } @else if (submitted()) {
+                <i class="bi bi-check2-circle"></i>
+                <span class="ms-2">Sent!</span>
+              } @else {
+                <i class="bi bi-send"></i>
+                <span class="ms-2">Send Message</span>
+              }
+            </button>
+
+            <span class="response-time">
+              <i class="bi bi-lightning-charge"></i>
+              Usually responds within 24h
+            </span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

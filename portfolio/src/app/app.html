@@ -1,0 +1,22 @@
+<div class="app-shell" [class.is-scrolled]="isScrolled()">
+  <!-- Custom Cursor -->
+  <div class="cursor-dot" [class.visible]="cursorVisible()"
+       [style.transform]="'translate(' + cursorX() + 'px,' + cursorY() + 'px)'"></div>
+  <div class="cursor-ring" [class.visible]="cursorVisible()"
+       [style.transform]="'translate(' + cursorX() + 'px,' + cursorY() + 'px)'"></div>
+
+  <!-- Animated background -->
+  <div class="bg-orbs" aria-hidden="true">
+    <span class="orb orb-1"></span>
+    <span class="orb orb-2"></span>
+    <span class="orb orb-3"></span>
+  </div>
+
+  <app-navbar [scrolled]="isScrolled()" />
+
+  <main class="main-content">
+    <router-outlet />
+  </main>
+
+  <app-footer />
+</div>

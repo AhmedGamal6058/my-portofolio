@@ -1,0 +1,114 @@
+<section id="home" class="hero">
+  <div class="container-x">
+    <div class="row align-items-center g-5 hero-row">
+      <div class="col-lg-7">
+        <div class="hero-content reveal">
+          <span class="eyebrow">
+            <span class="wave">👋</span> Welcome to my portfolio
+          </span>
+
+          <h1 class="hero-title">
+            Hi, I'm <span class="gradient-text">{{ portfolio.name }}</span>
+            <br />
+            <span class="role-line">
+              a <span class="typed">{{ currentRole() }}</span><span class="cursor">|</span>
+            </span>
+          </h1>
+
+          <p class="hero-subtitle">
+            {{ portfolio.tagline }}
+          </p>
+
+          <div class="hero-info">
+            <div class="info-item">
+              <i class="bi bi-geo-alt"></i>
+              <span>{{ portfolio.location }}</span>
+            </div>
+            <div class="info-item">
+              <i class="bi bi-briefcase"></i>
+              <span>3+ years building production Angular apps</span>
+            </div>
+          </div>
+
+          <div class="hero-cta">
+            <a href="#projects" class="btn btn-primary">
+              <i class="bi bi-rocket-takeoff"></i>
+              View My Work
+            </a>
+            <a href="#contact" class="btn btn-outline-light">
+              <i class="bi bi-envelope"></i>
+              Get in Touch
+            </a>
+            <a [href]="'mailto:' + portfolio.email" class="btn btn-ghost" mat-stroked-button>
+              <mat-icon>download</mat-icon>
+              Download CV
+            </a>
+          </div>
+
+          <div class="hero-socials">
+            <span class="socials-label">Follow me</span>
+            <div class="social-icons">
+              @for (s of portfolio.socials.slice(0, 4); track s.url) {
+                <a [href]="s.url" target="_blank" rel="noopener" [attr.aria-label]="s.name" class="social-icon">
+                  <i class="bi" [ngClass]="s.icon"></i>
+                </a>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-5">
+        <div class="hero-visual reveal">
+          <div class="visual-card">
+            <div class="card-glow"></div>
+            <div class="card-content">
+              <div class="avatar-wrapper">
+                <div class="avatar-ring"></div>
+                <div class="avatar">
+                  <span class="avatar-initials">{{ portfolio.avatarInitials }}</span>
+                </div>
+                <div class="status-indicator" title="Available"></div>
+              </div>
+
+              <div class="dev-info">
+                <h3 class="dev-name">{{ portfolio.name }}</h3>
+                <p class="dev-role">{{ portfolio.role }}</p>
+              </div>
+
+              <div class="tech-stack">
+                @for (tech of ['Angular', 'TypeScript', 'RxJS', 'NgRx', 'Material']; track tech) {
+                  <span class="tech-pill">{{ tech }}</span>
+                }
+              </div>
+
+              <div class="hero-stats">
+                @for (stat of portfolio.stats; track stat.label) {
+                  <div class="stat">
+                    <i class="bi" [ngClass]="stat.icon"></i>
+                    <div class="stat-info">
+                      <span class="stat-value gradient-text">{{ formatValue(stat.label, stat.value) }}</span>
+                      <span class="stat-label">{{ stat.label }}</span>
+                    </div>
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+
+          <div class="floating-icon icon-1"><i class="bi bi-filetype-tsx"></i></div>
+          <div class="floating-icon icon-2"><i class="bi bi-filetype-html"></i></div>
+          <div class="floating-icon icon-3"><i class="bi bi-filetype-scss"></i></div>
+          <div class="floating-icon icon-4"><i class="bi bi-github"></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a href="#about" class="scroll-cue" aria-label="Scroll to about">
+    <span class="mouse">
+      <span class="wheel"></span>
+    </span>
+    <span class="cue-text">Scroll</span>
+  </a>
+</section>

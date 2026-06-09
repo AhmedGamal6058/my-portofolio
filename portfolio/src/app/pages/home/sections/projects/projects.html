@@ -1,0 +1,91 @@
+<section id="projects" class="section projects">
+  <div class="container-x">
+    <div class="text-center reveal">
+      <span class="eyebrow"><i class="bi bi-briefcase"></i> Featured Work</span>
+      <h2 class="section-title">Projects that <span class="gradient-text">made an impact</span></h2>
+      <p class="section-subtitle">
+        A selection of projects I've designed, built and shipped to production.
+      </p>
+    </div>
+
+    <div class="filter-bar reveal">
+      @for (f of filters; track f.id) {
+        <button
+          type="button"
+          class="filter-btn"
+          [class.active]="activeFilter() === f.id"
+          (click)="setFilter(f.id)">
+          {{ f.label }}
+        </button>
+      }
+    </div>
+
+    <div class="projects-grid">
+      @for (p of filtered(); track p.id; let i = $index) {
+        <article class="project-card reveal" [style.animation-delay.ms]="i * 80">
+          <div class="project-image" [style.background]="gradientFor(p.image)">
+            <div class="image-overlay"></div>
+            <div class="image-pattern"></div>
+
+            <div class="image-content">
+              <span class="project-year">{{ p.year }}</span>
+              @if (p.featured) {
+                <span class="featured-tag">
+                  <i class="bi bi-star-fill"></i> Featured
+                </span>
+              }
+              <div class="project-icon-big">
+                <i class="bi" [ngClass]="{
+                  'bi-graph-up': p.category === 'saas',
+                  'bi-bag-check': p.category === 'ecommerce',
+                  'bi-bar-chart': p.category === 'dashboard',
+                  'bi-globe': p.category === 'web',
+                  'bi-phone': p.category === 'pwa'
+                }"></i>
+              </div>
+            </div>
+
+            <div class="card-actions">
+              <button
+                type="button"
+                class="action-btn"
+                (click)="openProject(p, $event)"
+                aria-label="View details">
+                <i class="bi bi-arrows-angle-expand"></i>
+              </button>
+              @if (p.demoUrl) {
+                <a [href]="p.demoUrl" target="_blank" rel="noopener" class="action-btn" aria-label="Live demo">
+                  <i class="bi bi-box-arrow-up-right"></i>
+                </a>
+              }
+              @if (p.repoUrl) {
+                <a [href]="p.repoUrl" target="_blank" rel="noopener" class="action-btn" aria-label="Source code">
+                  <i class="bi bi-github"></i>
+                </a>
+              }
+            </div>
+          </div>
+
+          <div class="project-body">
+            <div class="project-tags">
+              @for (tag of p.tags.slice(0, 3); track tag) {
+                <span class="tag">{{ tag }}</span>
+              }
+              @if (p.tags.length > 3) {
+                <span class="tag more">+{{ p.tags.length - 3 }}</span>
+              }
+            </div>
+            <h3 class="project-title">{{ p.title }}</h3>
+            <p class="project-desc">{{ p.shortDescription }}</p>
+            <div class="project-footer">
+              <button class="more-link" (click)="openProject(p, $event)">
+                View case study
+                <i class="bi bi-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
