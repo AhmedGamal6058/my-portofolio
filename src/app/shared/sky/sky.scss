@@ -1,0 +1,258 @@
+:host {
+  display: block;
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.sky {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.6s var(--ease);
+  will-change: opacity;
+
+  &.visible { opacity: 1; }
+}
+
+/* ============================================
+   Sky Gradient (top blue → horizon white)
+   ============================================ */
+.sky-gradient {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      #6fb6f0 0%,
+      #8ec5f3 18%,
+      #aed3f4 34%,
+      #cce0f6 50%,
+      #dde9f5 68%,
+      #ecf2f8 86%,
+      #f6f9fc 100%
+    );
+}
+
+/* Atmospheric haze near horizon */
+.sky-haze {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 35%;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.0) 30%,
+    rgba(255, 255, 255, 0.35) 70%,
+    rgba(255, 255, 255, 0.55) 100%
+  );
+  pointer-events: none;
+}
+
+/* ============================================
+   Sun (top-right, realistic gradient sphere)
+   ============================================ */
+.sun-wrap {
+  position: absolute;
+  top: 8%;
+  inset-inline-end: 10%;
+  width: 240px;
+  height: 240px;
+  pointer-events: none;
+  animation: sun-drift 24s ease-in-out infinite;
+}
+
+.sun {
+  position: absolute;
+  inset: 60px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 38% 35%, #fffce0 0%, #ffe580 30%, #ffc94a 65%, #ff9e2a 100%);
+  box-shadow:
+    0 0 90px 18px rgba(255, 200, 80, 0.45),
+    0 0 30px rgba(255, 200, 80, 0.4),
+    inset 0 0 25px rgba(255, 245, 215, 0.4);
+  animation: sun-pulse 5s ease-in-out infinite;
+}
+
+/* Soft outer glow */
+.sun-glow {
+  position: absolute;
+  inset: 30px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 210, 100, 0.45) 0%, rgba(255, 210, 100, 0) 70%);
+  filter: blur(8px);
+  animation: sun-pulse 5s ease-in-out infinite;
+}
+
+/* Rotating rays (more subtle now) */
+.sun-rays {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(255, 200, 80, 0.18) 4deg,
+    transparent 8deg,
+    transparent 24deg,
+    rgba(255, 200, 80, 0.15) 28deg,
+    transparent 32deg,
+    transparent 48deg,
+    rgba(255, 200, 80, 0.18) 52deg,
+    transparent 56deg,
+    transparent 72deg,
+    rgba(255, 200, 80, 0.15) 76deg,
+    transparent 80deg,
+    transparent 96deg,
+    rgba(255, 200, 80, 0.18) 100deg,
+    transparent 104deg,
+    transparent 120deg,
+    rgba(255, 200, 80, 0.15) 124deg,
+    transparent 128deg,
+    transparent 144deg,
+    rgba(255, 200, 80, 0.18) 148deg,
+    transparent 152deg,
+    transparent 168deg,
+    rgba(255, 200, 80, 0.15) 172deg,
+    transparent 176deg,
+    transparent 192deg,
+    rgba(255, 200, 80, 0.18) 196deg,
+    transparent 200deg,
+    transparent 216deg,
+    rgba(255, 200, 80, 0.15) 220deg,
+    transparent 224deg,
+    transparent 240deg,
+    rgba(255, 200, 80, 0.18) 244deg,
+    transparent 248deg,
+    transparent 264deg,
+    rgba(255, 200, 80, 0.15) 268deg,
+    transparent 272deg,
+    transparent 288deg,
+    rgba(255, 200, 80, 0.18) 292deg,
+    transparent 296deg,
+    transparent 312deg,
+    rgba(255, 200, 80, 0.15) 316deg,
+    transparent 320deg,
+    transparent 336deg,
+    rgba(255, 200, 80, 0.18) 340deg,
+    transparent 344deg,
+    transparent 360deg
+  );
+  filter: blur(3px);
+  animation: sun-spin 80s linear infinite;
+  mask: radial-gradient(circle, transparent 70px, #000 90px, #000 145px, transparent 160px);
+  -webkit-mask: radial-gradient(circle, transparent 70px, #000 90px, #000 145px, transparent 160px);
+}
+
+@keyframes sun-pulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.04); }
+}
+@keyframes sun-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes sun-drift {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(-6px, -10px); }
+}
+
+/* ============================================
+   Realistic SVG clouds
+   ============================================ */
+.cloud {
+  position: absolute;
+  display: block;
+  width: 220px;
+  height: 110px;
+  filter: drop-shadow(0 8px 22px rgba(80, 110, 140, 0.18))
+          drop-shadow(0 2px 4px rgba(80, 110, 140, 0.1));
+  pointer-events: none;
+  transform-origin: center;
+  will-change: transform;
+}
+
+.cloud-1 { width: 240px; top: 11%; left: -8%; opacity: 0.95; animation: drift-1 95s linear infinite; }
+.cloud-2 { width: 300px; top: 23%; left: 32%; opacity: 1.0;  animation: drift-2 130s linear infinite; }
+.cloud-3 { width: 180px; top: 38%; left: 5%;  opacity: 0.85; animation: drift-3 80s linear infinite; }
+.cloud-4 { width: 260px; top: 17%; left: 58%; opacity: 0.9;  animation: drift-1 110s linear infinite; }
+.cloud-5 { width: 210px; top: 30%; left: 72%; opacity: 0.95; animation: drift-2 120s linear infinite; }
+.cloud-6 { width: 160px; top: 50%; left: 45%; opacity: 0.8;  animation: drift-3 100s linear infinite; }
+
+/* Parallax drift animations */
+@keyframes drift-1 {
+  0%   { transform: translateX(0)   translateY(0); }
+  50%  { transform: translateX(60px) translateY(-6px); }
+  100% { transform: translateX(0)   translateY(0); }
+}
+@keyframes drift-2 {
+  0%   { transform: translateX(0)    translateY(0); }
+  50%  { transform: translateX(-70px) translateY(8px); }
+  100% { transform: translateX(0)    translateY(0); }
+}
+@keyframes drift-3 {
+  0%   { transform: translateX(0)    translateY(0); }
+  50%  { transform: translateX(45px) translateY(-10px); }
+  100% { transform: translateX(0)    translateY(0); }
+}
+
+/* ============================================
+   Birds
+   ============================================ */
+.birds {
+  position: absolute;
+  top: 16%;
+  left: 28%;
+  width: 200px;
+  height: 40px;
+  color: rgba(60, 90, 130, 0.55);
+  animation: birds-fly 38s linear infinite;
+}
+
+.bird { transform-origin: center; transform-box: fill-box; }
+.b1 { animation: flap 1.5s ease-in-out infinite; }
+.b2 { animation: flap 1.8s ease-in-out infinite 0.2s; }
+.b3 { animation: flap 1.3s ease-in-out infinite 0.5s; }
+.b4 { animation: flap 1.7s ease-in-out infinite 0.7s; }
+
+@keyframes flap {
+  0%, 100% { transform: scaleY(1); }
+  50%      { transform: scaleY(0.55); }
+}
+@keyframes birds-fly {
+  0%   { transform: translate(0, 0); }
+  25%  { transform: translate(140px, -15px); }
+  50%  { transform: translate(280px, 5px); }
+  75%  { transform: translate(160px, 18px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* ============================================
+   Reduced motion
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .sun, .sun-rays, .sun-wrap, .sun-glow,
+  .cloud, .bird, .birds {
+    animation: none !important;
+  }
+}
+
+/* ============================================
+   Mobile tweaks
+   ============================================ */
+@media (max-width: 768px) {
+  .sun-wrap { width: 160px; height: 160px; top: 6%; inset-inline-end: 5%; }
+  .cloud-2, .cloud-5 { display: none; }
+  .cloud-1 { width: 180px; }
+  .cloud-4 { width: 200px; }
+  .birds { top: 12%; left: 12%; transform: scale(0.6); }
+}
+
+/* RTL: keep sun on the right (top-right) */
+[dir='rtl'] {
+  .sun-wrap { inset-inline-end: 6%; }
+  .birds { inset-inline-start: 30%; }
+}

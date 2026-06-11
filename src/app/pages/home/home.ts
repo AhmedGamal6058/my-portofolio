@@ -5,6 +5,7 @@ import { AboutComponent } from './sections/about/about';
 import { SkillsComponent } from './sections/skills/skills';
 import { ProjectsComponent } from './sections/projects/projects';
 import { ExperienceComponent } from './sections/experience/experience';
+import { EducationComponent } from './sections/education/education';
 import { TestimonialsComponent } from './sections/testimonials/testimonials';
 import { ContactComponent } from './sections/contact/contact';
 
@@ -16,6 +17,7 @@ import { ContactComponent } from './sections/contact/contact';
     SkillsComponent,
     ProjectsComponent,
     ExperienceComponent,
+    EducationComponent,
     TestimonialsComponent,
     ContactComponent,
   ],

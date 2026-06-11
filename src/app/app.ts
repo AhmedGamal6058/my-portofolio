@@ -1,13 +1,27 @@
-import { Component, inject, OnDestroy, OnInit, PLATFORM_ID, signal } from '@angular/core';
+import {
+  Component,
+  inject,
+  OnDestroy,
+  OnInit,
+  PLATFORM_ID,
+  signal,
+  computed,
+  effect,
+} from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './shared/navbar/navbar';
 import { FooterComponent } from './shared/footer/footer';
+import { SkyComponent } from './shared/sky/sky';
+import { StarfieldComponent } from './shared/starfield/starfield';
 import { ThemeService } from './core/services/theme.service';
+import { I18nService } from './core/services/i18n.service';
+import { en } from './core/i18n/en';
+import { ar } from './core/i18n/ar';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NavbarComponent, FooterComponent],
+  imports: [RouterOutlet, NavbarComponent, FooterComponent, SkyComponent, StarfieldComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
@@ -16,18 +30,56 @@ export class App implements OnInit, OnDestroy {
   private revealObserver: IntersectionObserver | null = null;
   private domObserver: MutationObserver | null = null;
   protected readonly themeService = inject(ThemeService);
+  protected readonly i18n = inject(I18nService);
   protected readonly isScrolled = signal(false);
   protected readonly cursorX = signal(0);
   protected readonly cursorY = signal(0);
   protected readonly cursorVisible = signal(false);
 
+  protected readonly isRtl = computed(() => this.i18n.isRtl());
+  protected readonly isLight = computed(() => this.themeService.theme() === 'light');
+
+  constructor() {
+    // Restore saved locale (or browser default) before render
+    if (isPlatformBrowser(this.platformId)) {
+      try {
+        const saved = localStorage.getItem('portfolio-locale') as 'en' | 'ar' | null;
+        if (saved === 'en' || saved === 'ar') {
+          this.i18n.locale.set(saved);
+        } else if ((navigator.language || 'en').toLowerCase().startsWith('ar')) {
+          this.i18n.locale.set('ar');
+        }
+      } catch {
+        /* ignore */
+      }
+    }
+
+    // Register dictionaries FIRST so any TranslatePipe downstream has keys
+    this.i18n.register('en', en);
+    this.i18n.register('ar', ar);
+
+    // Apply lang/dir on every locale change
+    effect(() => {
+      const loc = this.i18n.locale();
+      const dir = this.i18n.dir();
+      if (isPlatformBrowser(this.platformId)) {
+        document.documentElement.lang = loc;
+        document.documentElement.dir = dir;
+      }
+    });
+  }
+
   ngOnInit(): void {
     if (!isPlatformBrowser(this.platformId)) return;
 
     // Scroll detection
-    window.addEventListener('scroll', () => {
-      this.isScrolled.set(window.scrollY > 30);
-    }, { passive: true });
+    window.addEventListener(
+      'scroll',
+      () => {
+        this.isScrolled.set(window.scrollY > 30);
+      },
+      { passive: true },
+    );
 
     // Custom cursor (desktop only)
     try {
@@ -54,7 +106,6 @@ export class App implements OnInit, OnDestroy {
 
   private initRevealOnScroll(): void {
     if (typeof IntersectionObserver === 'undefined') {
-      // Fallback: just show all reveals
       this.showAllRevealElements();
       return;
     }
@@ -72,7 +123,6 @@ export class App implements OnInit, OnDestroy {
     );
 
     const observeRevealElements = () => this.observeRevealElements();
-
     observeRevealElements();
     requestAnimationFrame(observeRevealElements);
     setTimeout(observeRevealElements, 120);
@@ -86,15 +136,11 @@ export class App implements OnInit, OnDestroy {
 
   private observeRevealElements(): void {
     document.querySelectorAll<HTMLElement>('.reveal').forEach((el) => {
-      if (el.classList.contains('visible')) {
-        return;
-      }
-
+      if (el.classList.contains('visible')) return;
       if (this.isElementAlreadyInView(el)) {
         el.classList.add('visible');
         return;
       }
-
       this.revealObserver?.observe(el);
     });
   }

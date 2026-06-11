@@ -1,12 +1,12 @@
 <header class="navbar" [class.scrolled]="scrolled()">
   <div class="container-x nav-inner">
-    <a href="#home" class="brand" (click)="scrollTo('#home', $event)" aria-label="Home">
+    <a href="#home" class="brand" (click)="scrollTo('#home', $event)">
       <span class="brand-mark">
         <span class="brand-mark-inner">{{ '< />' }}</span>
       </span>
       <span class="brand-text">
         <span class="brand-name gradient-text">Ahmed<span class="dot">.</span>dev</span>
-        <span class="brand-sub">Angular · Frontend</span>
+        <span class="brand-sub">{{ 'footer.brandSub' | t }}</span>
       </span>
     </a>
 
@@ -17,7 +17,7 @@
           class="nav-link"
           [class.active]="activeSection() === link.href.replace('#', '')"
           (click)="scrollTo(link.href, $event)">
-          <span class="link-text">{{ link.label }}</span>
+          <span class="link-text">{{ link.key | t }}</span>
           <span class="link-underline"></span>
         </a>
       }
@@ -27,8 +27,7 @@
       <button
         type="button"
         class="icon-btn theme-toggle"
-        mat-icon-button
-        [matTooltip]="themeService.theme() === 'dark' ? 'Switch to light' : 'Switch to dark'"
+        [matTooltip]="(themeService.theme() === 'dark' ? 'nav.theme.toLight' : 'nav.theme.toDark') | t"
         (click)="themeService.toggle()"
         aria-label="Toggle theme">
         <mat-icon>{{ themeService.theme() === 'dark' ? 'light_mode' : 'dark_mode' }}</mat-icon>
@@ -39,20 +38,19 @@
         class="btn btn-primary cta d-none d-md-inline-flex"
         (click)="scrollTo('#contact', $event)">
         <i class="bi bi-send"></i>
-        Let's Talk
+        {{ 'nav.cta' | t }}
       </a>
 
       <button
         type="button"
         class="icon-btn d-lg-none menu-btn"
         (click)="toggleMobile()"
-        aria-label="Open menu">
+        [attr.aria-label]="mobileOpen() ? ('nav.menu.close' | t) : ('nav.menu.open' | t)">
         <mat-icon>{{ mobileOpen() ? 'close' : 'menu' }}</mat-icon>
       </button>
     </div>
   </div>
 
-  <!-- Mobile Drawer -->
   <div class="mobile-drawer" [class.open]="mobileOpen()">
     <nav class="mobile-nav" aria-label="Mobile">
       @for (link of links; track link.href) {
@@ -62,14 +60,15 @@
           [class.active]="activeSection() === link.href.replace('#', '')"
           (click)="scrollTo(link.href, $event)">
           <mat-icon>{{ link.icon }}</mat-icon>
-          <span>{{ link.label }}</span>
+          <span>{{ link.key | t }}</span>
         </a>
       }
+
       <a
         href="#contact"
         class="btn btn-primary mt-3 w-100 justify-content-center"
         (click)="scrollTo('#contact', $event)">
-        <i class="bi bi-send me-2"></i> Let's Talk
+        <i class="bi bi-send me-2"></i> {{ 'nav.cta' | t }}
       </a>
     </nav>
   </div>

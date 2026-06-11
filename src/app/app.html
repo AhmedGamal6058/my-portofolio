@@ -1,11 +1,11 @@
-<div class="app-shell" [class.is-scrolled]="isScrolled()">
-  <!-- Custom Cursor -->
-  <div class="cursor-dot" [class.visible]="cursorVisible()"
-       [style.transform]="'translate(' + cursorX() + 'px,' + cursorY() + 'px)'"></div>
-  <div class="cursor-ring" [class.visible]="cursorVisible()"
-       [style.transform]="'translate(' + cursorX() + 'px,' + cursorY() + 'px)'"></div>
+<div class="app-shell" [class.is-scrolled]="isScrolled()" [class.is-rtl]="isRtl()" [class.is-light]="isLight()">
+  <!-- Sky (sun + clouds) for light mode -->
+  <app-sky />
 
-  <!-- Animated background -->
+  <!-- Starfield for dark mode -->
+  <app-starfield />
+
+  <!-- Animated background orbs (always) -->
   <div class="bg-orbs" aria-hidden="true">
     <span class="orb orb-1"></span>
     <span class="orb orb-2"></span>

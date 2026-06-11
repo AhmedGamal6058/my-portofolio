@@ -1,10 +1,10 @@
 <section id="about" class="section about">
   <div class="container-x">
     <div class="text-center reveal">
-      <span class="eyebrow"><i class="bi bi-person-badge"></i> About me</span>
-      <h2 class="section-title">Crafting <span class="gradient-text">delightful</span> digital experiences</h2>
+      <span class="eyebrow"><i class="bi bi-person-badge"></i> {{ 'about.eyebrow' | t }}</span>
+      <h2 class="section-title">{{ 'about.title1' | t }} <span class="gradient-text">{{ 'about.titleHighlight' | t }}</span> {{ 'about.title2' | t }}</h2>
       <p class="section-subtitle">
-        A passionate frontend developer who treats every component like a small product.
+        {{ 'about.subtitle' | t }}
       </p>
     </div>
 
@@ -16,16 +16,16 @@
               <span class="dot red"></span>
               <span class="dot yellow"></span>
               <span class="dot green"></span>
-              <span class="file-name">developer.ts</span>
+              <span class="file-name">{{ 'about.fileName' | t }}</span>
             </div>
             <pre class="code"><code><span class="c-keyword">const</span> <span class="c-var">ahmed</span> = {{ '{' }}
-  <span class="c-prop">role</span>: <span class="c-string">'Senior Angular Developer'</span>,
-  <span class="c-prop">experience</span>: <span class="c-number">3+</span> <span class="c-string">'years'</span>,
+  <span class="c-prop">role</span>: <span class="c-string">'Angular Frontend Developer'</span>,
+  <span class="c-prop">experience</span>: <span class="c-number">3</span> <span class="c-string">'years'</span>,
   <span class="c-prop">focus</span>: [
-    <span class="c-string">'Angular 17'</span>,
-    <span class="c-string">'NgRx & Signals'</span>,
-    <span class="c-string">'Material & Bootstrap'</span>,
-    <span class="c-string">'Performance & A11y'</span>,
+    <span class="c-string">'Angular'</span>,
+    <span class="c-string">'TypeScript & JavaScript'</span>,
+    <span class="c-string">'SCSS & Bootstrap'</span>,
+    <span class="c-string">'REST APIs & ECharts'</span>,
   ],
   <span class="c-prop">available</span>: <span class="c-bool">true</span>,
   <span class="c-prop">loves</span>: <span class="c-string">'clean code & great UX'</span>,
@@ -34,11 +34,11 @@
 
           <div class="floating-badge badge-1">
             <mat-icon>workspace_premium</mat-icon>
-            <span>3+ Years Exp.</span>
+            <span>{{ 'about.badge1' | t }}</span>
           </div>
           <div class="floating-badge badge-2">
             <i class="bi bi-stars"></i>
-            <span>Top Rated</span>
+            <span>{{ 'about.badge2' | t }}</span>
           </div>
         </div>
       </div>
@@ -46,27 +46,25 @@
       <div class="col-lg-7 reveal">
         <div class="about-content">
           <h3 class="about-heading">
-            I'm {{ portfolio.name }}, an Angular developer who turns complex problems
-            into <span class="gradient-text">elegant solutions</span>.
+            {{ 'about.headingPrefix' | t }} {{ portfolio.name }}{{ 'about.headingSuffix' | t }}
+            <span class="gradient-text">{{ 'about.headingHighlight' | t }}</span>{{ 'about.headingEnd' | t }}
           </h3>
           <p class="about-text">
-            {{ portfolio.bio }}
+            {{ 'about.bio1' | t }}
           </p>
           <p class="about-text">
-            My work spans enterprise SaaS dashboards, fintech apps, e-commerce platforms and PWAs.
-            I love owning the full frontend lifecycle — from architecture and design tokens to
-            unit-testing, CI/CD and production monitoring.
+            {{ 'about.bio2' | t }}
           </p>
 
           <div class="highlights-grid">
-            @for (h of highlights; track h.title) {
+            @for (h of highlights; track h.titleKey) {
               <div class="highlight">
                 <div class="h-icon">
                   <i class="bi" [ngClass]="h.icon"></i>
                 </div>
                 <div class="h-body">
-                  <h4 class="h-title">{{ h.title }}</h4>
-                  <p class="h-text">{{ h.text }}</p>
+                  <h4 class="h-title">{{ h.titleKey | t }}</h4>
+                  <p class="h-text">{{ h.textKey | t }}</p>
                 </div>
               </div>
             }

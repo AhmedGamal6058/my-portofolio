@@ -5,291 +5,268 @@ import { Experience } from '../models/experience.model';
 import { Testimonial } from '../models/testimonial.model';
 import { SocialLink } from '../models/social.model';
 import { Stat } from '../models/stat.model';
+import { Education } from '../models/education.model';
 
 @Injectable({ providedIn: 'root' })
 export class PortfolioService {
-  readonly name = 'Ahmed Hassan';
-  readonly role = 'Senior Angular Frontend Developer';
-  readonly tagline = 'Building fast, scalable & delightful web experiences with Angular.';
-  readonly location = 'Cairo, Egypt · Available Remote';
-  readonly email = 'ahmed.hassan.dev@example.com';
-  readonly phone = '+20 100 123 4567';
-  readonly bio = `Frontend specialist with 3+ years of experience architecting and shipping
-production-grade Angular applications. Passionate about clean architecture,
-performant UIs, accessibility, and turning complex requirements into elegant,
-intuitive interfaces.`;
-  readonly avatarInitials = 'AH';
+  readonly name = 'Ahmed Gamal';
+  readonly role = 'Front End Developer';
+  readonly fullTitle = 'Angular Front-End Developer | 4 years experience';
+  readonly tagline =
+    'Building scalable, maintainable & user-focused web applications with Angular.';
+  readonly location = 'Banī Suwayf, Egypt';
+  readonly phone = '+201060622621';
+  readonly email = 'ahmedgamalragab120@gmail.com';
+  readonly bio = `Front-End Developer (Angular) with 4 years of professional experience
+building scalable, maintainable and high-performance web applications. Specialized
+in modular, component-based architectures, reactive programming with RxJS and
+Angular Signals, REST API integration, and delivering responsive, accessible,
+user-focused interfaces. Proven ability to lead front-end work within
+cross-functional teams, enforce clean code standards through code reviews, and
+mentor junior developers in fast-paced Agile environments.`;
+  readonly avatarInitials = 'AG';
+  readonly avatarUrl = 'assets/images/my-photo.jpg';
 
   readonly stats: Stat[] = [
-    { label: 'Years Experience', value: '3+', icon: 'bi-calendar-check' },
-    { label: 'Projects Shipped', value: '25+', icon: 'bi-rocket-takeoff' },
-    { label: 'Happy Clients', value: '18', icon: 'bi-people' },
-    { label: 'Code Reviews', value: '1.2k', icon: 'bi-code-slash' },
+    { label: 'Years Experience', value: '4+', icon: 'bi-calendar-check' },
+    { label: 'Years of Education', value: '4', icon: 'bi-mortarboard' },
+    { label: 'Technologies', value: '18+', icon: 'bi-stack' },
+    { label: 'Projects Shipped', value: '15+', icon: 'bi-rocket-takeoff' },
   ];
 
   readonly socials: SocialLink[] = [
     { name: 'GitHub', url: 'https://github.com', icon: 'bi-github', color: '#ffffff' },
     { name: 'LinkedIn', url: 'https://linkedin.com', icon: 'bi-linkedin', color: '#0a66c2' },
-    { name: 'Stack Overflow', url: 'https://stackoverflow.com', icon: 'bi-stack-overflow', color: '#f48024' },
-    { name: 'Twitter / X', url: 'https://x.com', icon: 'bi-twitter-x', color: '#e7e9ea' },
-    { name: 'Email', url: 'mailto:ahmed.hassan.dev@example.com', icon: 'bi-envelope-at', color: '#ea4335' },
+    { name: 'Email', url: 'mailto:ahmedgamalragab120@gmail.com', icon: 'bi-envelope-at', color: '#ea4335' },
+    { name: 'Phone', url: 'tel:+201060622621', icon: 'bi-telephone', color: '#22c55e' },
   ];
 
   readonly skills: Skill[] = [
-    // Frontend core
-    { name: 'Angular (2-17)', icon: 'bi-filetype-html', level: 'expert', years: 3, category: 'frontend' },
-    { name: 'TypeScript', icon: 'bi-filetype-tsx', level: 'expert', years: 3, category: 'frontend' },
-    { name: 'RxJS', icon: 'bi-arrow-repeat', level: 'advanced', years: 3, category: 'frontend' },
-    { name: 'JavaScript (ES2024)', icon: 'bi-filetype-js', level: 'expert', years: 4, category: 'frontend' },
-    { name: 'HTML5 & SCSS', icon: 'bi-filetype-scss', level: 'expert', years: 5, category: 'frontend' },
+    // Core Frontend
+    { name: 'Angular', icon: 'bi-filetype-html', level: 'expert', years: 4, category: 'frontend' },
+    { name: 'TypeScript', icon: 'bi-filetype-tsx', level: 'expert', years: 4, category: 'frontend' },
+    { name: 'JavaScript (ES6+)', icon: 'bi-filetype-js', level: 'expert', years: 5, category: 'frontend' },
+    { name: 'HTML5', icon: 'bi-filetype-html', level: 'expert', years: 5, category: 'frontend' },
+    { name: 'CSS3', icon: 'bi-filetype-css', level: 'expert', years: 5, category: 'frontend' },
+    { name: 'SCSS', icon: 'bi-filetype-scss', level: 'expert', years: 4, category: 'frontend' },
+    { name: 'Bootstrap', icon: 'bi-grid-1x2-fill', level: 'expert', years: 4, category: 'frontend' },
+    // State & Reactivity
+    { name: 'RxJS', icon: 'bi-arrow-repeat', level: 'advanced', years: 4, category: 'state' },
+    { name: 'Angular Signals', icon: 'bi-broadcast', level: 'advanced', years: 2, category: 'state' },
+    { name: 'NgRx', icon: 'bi-diagram-2', level: 'intermediate', years: 2, category: 'state' },
+    { name: 'Component-Based Design', icon: 'bi-diagram-3', level: 'expert', years: 4, category: 'state' },
     // UI
     { name: 'Angular Material', icon: 'bi-palette', level: 'advanced', years: 3, category: 'ui' },
-    { name: 'Bootstrap 5', icon: 'bi-grid-1x2-fill', level: 'expert', years: 4, category: 'ui' },
-    { name: 'TailwindCSS', icon: 'bi-wind', level: 'advanced', years: 2, category: 'ui' },
-    { name: 'PrimeNG', icon: 'bi-ui-checks', level: 'intermediate', years: 1, category: 'ui' },
-    // State
-    { name: 'NgRx', icon: 'bi-diagram-3', level: 'advanced', years: 2, category: 'state' },
-    { name: 'Akita / Signals', icon: 'bi-broadcast', level: 'advanced', years: 2, category: 'state' },
-    // Tooling
-    { name: 'Git & GitHub', icon: 'bi-git', level: 'expert', years: 5, category: 'tooling' },
-    { name: 'Nx / Monorepo', icon: 'bi-boxes', level: 'advanced', years: 2, category: 'tooling' },
-    { name: 'Webpack / Vite', icon: 'bi-hammer', level: 'intermediate', years: 2, category: 'tooling' },
-    { name: 'Docker (basics)', icon: 'bi-docker', level: 'intermediate', years: 1, category: 'tooling' },
+    { name: 'Apache ECharts', icon: 'bi-bar-chart-line', level: 'advanced', years: 2, category: 'ui' },
+    { name: 'Mobiscroll', icon: 'bi-calendar-event', level: 'intermediate', years: 1, category: 'ui' },
+    { name: 'Responsive & RTL Design', icon: 'bi-phone', level: 'expert', years: 4, category: 'ui' },
     // Testing
-    { name: 'Jest / Karma', icon: 'bi-bug', level: 'advanced', years: 3, category: 'testing' },
-    { name: 'Cypress / Playwright', icon: 'bi-check2-square', level: 'intermediate', years: 2, category: 'testing' },
-    { name: 'Storybook', icon: 'bi-book', level: 'intermediate', years: 1, category: 'testing' },
-    // Soft
-    { name: 'Team Leadership', icon: 'bi-people-fill', level: 'advanced', years: 2, category: 'soft' },
-    { name: 'Agile / Scrum', icon: 'bi-kanban', level: 'expert', years: 3, category: 'soft' },
-    { name: 'Mentoring', icon: 'bi-mortarboard', level: 'advanced', years: 2, category: 'soft' },
+    { name: 'Jasmine & Karma', icon: 'bi-check2-circle', level: 'advanced', years: 3, category: 'testing' },
+    { name: 'Unit Testing', icon: 'bi-bug', level: 'advanced', years: 3, category: 'testing' },
+    // Tooling & Architecture
+    { name: 'RESTful APIs', icon: 'bi-cloud-arrow-down', level: 'advanced', years: 4, category: 'tooling' },
+    { name: 'Git', icon: 'bi-git', level: 'expert', years: 5, category: 'tooling' },
+    { name: 'GitHub', icon: 'bi-github', level: 'expert', years: 5, category: 'tooling' },
+    { name: 'GitLab CI/CD', icon: 'bi-git', level: 'advanced', years: 2, category: 'tooling' },
+    { name: 'NPM', icon: 'bi-box', level: 'expert', years: 4, category: 'tooling' },
+    { name: 'Modular Architecture', icon: 'bi-boxes', level: 'advanced', years: 4, category: 'tooling' },
+    { name: 'Lazy Loading & Code Splitting', icon: 'bi-lightning-charge', level: 'advanced', years: 4, category: 'tooling' },
   ];
 
   readonly experiences: Experience[] = [
     {
       id: 'exp-1',
-      company: 'Brightware Tech',
-      role: 'Senior Angular Developer',
-      period: 'Mar 2024 — Present',
-      startDate: '2024-03',
-      location: 'Cairo, Egypt · Hybrid',
+      company: 'Al Mnabr Consulting Engineering',
+      role: 'Front-End Developer (Angular)',
+      period: '2023 — Present',
+      startDate: '2023-01',
+      endDate: '2026-06',
+      location: 'Cairo, Egypt (Remote)',
       type: 'full-time',
       description:
-        'Leading the frontend chapter of a fintech SaaS platform serving 50k+ monthly users. Owning architecture, performance, and developer experience.',
+        'Own the front-end of a modular Angular platform: architecting standalone components with Signals and OnPush change detection, leading code reviews, and shipping accessible, high-performance features in Agile sprints.',
       achievements: [
-        'Migrated legacy AngularJS modules to Angular 17 standalone components — cut bundle size by 38%.',
-        'Designed a reusable component library (40+ components) used across 4 product lines.',
-        'Mentored 3 mid-level developers; introduced code-review culture and linting standards.',
-        'Improved Core Web Vitals (LCP 1.2s, CLS 0.02) using lazy loading, image CDN and signals.',
+        'Architected a modular Angular frontend with standalone components, Signals-based state, and OnPush change detection across the app.',
+        'Cut initial bundle size by ~35% and improved LCP via route-level lazy loading, code splitting, and image optimization, strengthening Core Web Vitals.',
+        'Translated Figma/UX specs into a reusable component library with a lightweight design system and living documentation.',
+        'Integrated REST APIs with typed models, interceptors for auth/error handling, and robust reactive form validation.',
+        'Built interactive dashboards and data visualizations with Apache ECharts, enhancing data clarity for end users.',
+        'Introduced unit testing standards with Jasmine/Karma, raising coverage on critical modules.',
+        'Led code reviews and mentored 2 junior developers, raising team-wide front-end quality and consistency.',
+        'Collaborated with product, design, and backend in Agile sprints to scope, plan, and ship features on schedule.',
       ],
-      stack: ['Angular 17', 'NgRx', 'Signals', 'Material', 'Tailwind', 'Nx', 'Jest', 'Cypress'],
+      stack: [
+        'Angular',
+        'TypeScript',
+        'RxJS',
+        'Angular Signals',
+        'SCSS',
+        'Bootstrap',
+        'Angular Material',
+        'Apache ECharts',
+        'Mobiscroll',
+        'REST APIs',
+        'Jasmine/Karma',
+        'Git',
+      ],
     },
     {
       id: 'exp-2',
-      company: 'NileBits Solutions',
-      role: 'Angular Frontend Developer',
-      period: 'Jan 2023 — Feb 2024',
-      startDate: '2023-01',
-      endDate: '2024-02',
-      location: 'Cairo, Egypt',
-      type: 'full-time',
+      company: 'Freelance',
+      role: 'Front-End Developer',
+      period: '2021 — 2023',
+      startDate: '2021-09',
+      endDate: '2023-01',
+      location: 'Banī Suwayf, Egypt (Remote)',
+      type: 'freelance',
       description:
-        'Built enterprise dashboards and admin panels for logistics and HR clients. Focused on accessibility, RTL support, and complex forms.',
+        'Delivered responsive websites and single-page applications for local businesses and startups, growing from vanilla JavaScript projects into full Angular SPAs.',
       achievements: [
-        'Delivered 6 production projects end-to-end with 99% on-time delivery.',
-        'Built a dynamic form-engine with JSON schema (similar to Angular Reactive Forms).',
-        'Implemented multi-theme, fully RTL-compliant UI with Angular Material + Bootstrap.',
-        'Set up CI/CD pipelines reducing deploy time from 25 to 4 minutes.',
+        'Designed and shipped 10+ responsive, mobile-first websites and landing pages with HTML5, CSS3 (Flexbox/Grid), and JavaScript (ES6+).',
+        'Built single-page applications with Angular, implementing client-side routing, reusable components, and REST API integration.',
+        'Improved client page-load times through asset optimization, lazy loading, and semantic, SEO-friendly markup.',
+        'Implemented bilingual (Arabic/English) interfaces with full RTL support and accessible, keyboard-friendly navigation.',
+        'Managed the full delivery cycle directly with clients: requirements, estimates, iterations, and deployment.',
       ],
-      stack: ['Angular 15-16', 'RxJS', 'NgRx', 'Bootstrap 5', 'Material', 'Karma'],
+      stack: [
+        'Angular',
+        'JavaScript',
+        'TypeScript',
+        'HTML5',
+        'CSS3',
+        'SCSS',
+        'Bootstrap',
+        'REST APIs',
+        'Git',
+      ],
     },
+  ];
+
+  readonly education: Education[] = [
     {
-      id: 'exp-3',
-      company: 'Codeforge Agency',
-      role: 'Junior Frontend Developer',
-      period: 'Jun 2022 — Dec 2022',
-      startDate: '2022-06',
-      endDate: '2022-12',
-      location: 'Remote',
-      type: 'full-time',
-      description:
-        'Worked on a variety of client projects (e-commerce, marketing sites, internal tools) gaining solid Angular fundamentals.',
-      achievements: [
-        'Built 8+ responsive landing pages and e-commerce storefronts.',
-        'Integrated Stripe, PayPal and Firebase Auth in 3 different projects.',
-        'Introduced unit testing with Jasmine/Karma — coverage grew from 0% to 65%.',
+      id: 'edu-1',
+      degree: 'education.degree.bachelor',
+      degreeFull: 'Bachelor of Science in Computer Science',
+      facultyKey: 'education.faculty',
+      faculty: 'Faculty of Computer Science',
+      university: 'Banī Suwayf University',
+      location: 'Banī Suwayf, Egypt',
+      period: '2018 — 2022',
+      startDate: '2018-09',
+      endDate: '2022-06',
+      grade: 'B+',
+      gradeFull: 'Graduated with B+ standing',
+      courseworkKey: 'education.coursework',
+      courses: [
+        'Data Structures & Algorithms',
+        'Web Development',
+        'Databases',
+        'Software Engineering',
+        'Computer Networks',
       ],
-      stack: ['Angular 14', 'TypeScript', 'Bootstrap 5', 'Firebase', 'Stripe'],
+      emphasisKey: 'education.emphasis',
+      emphasis: 'HTML5, CSS3, JavaScript (ES6+), Angular, Git, REST APIs',
     },
   ];
 
   readonly projects: Project[] = [
     {
       id: 'p1',
-      title: 'FinFlow — Personal Finance SaaS',
+      title: 'Modular Angular Frontend System',
       shortDescription:
-        'A modern fintech dashboard with real-time analytics, smart budgets and AI insights.',
+        'A scalable component-based Angular application with modular architecture and reusable design system.',
       description:
-        'FinFlow is a complete personal-finance platform I built as a flagship project. It features real-time transaction syncing, smart categorization, beautiful charts, and a fully responsive UI supporting both LTR and RTL.',
+        'Built as part of the work at Al Mnabr Consulting Engineering — a modular Angular frontend system featuring standalone components, Signals-based state, lazy loading, and a lightweight design system.',
       image: 'gradient-1',
-      tags: ['Angular 17', 'NgRx', 'Signals', 'D3.js', 'Tailwind', 'PWA'],
-      category: 'saas',
+      tags: ['Angular', 'TypeScript', 'Signals', 'SCSS', 'Lazy Loading'],
+      category: 'web',
       features: [
-        'Real-time data via WebSockets & RxJS',
-        'Reusable chart components with D3.js',
-        'PWA with offline support & push notifications',
-        'WCAG 2.1 AA accessibility compliance',
+        'Standalone components with Signals-based state',
+        'Lightweight design system & component documentation',
+        'Route-level lazy loading and code splitting',
+        'Responsive and accessible UI (WCAG-aware)',
       ],
-      demoUrl: '#',
-      repoUrl: '#',
       featured: true,
       year: 2024,
     },
     {
       id: 'p2',
-      title: 'ShopSphere E-commerce',
+      title: 'Interactive Data Dashboards',
       shortDescription:
-        'High-performance storefront with headless CMS, payments and multi-currency support.',
+        'Data-driven dashboards with interactive visualizations using Apache ECharts.',
       description:
-        'A complete headless e-commerce experience built on Angular Universal for SEO and lightning fast loads. Includes advanced filtering, wishlist, and a fully featured admin panel.',
+        'Interactive dashboards and data visualizations using Apache ECharts, enhancing data clarity for end users. Includes multiple chart types, filtering, drill-down, and responsive layouts.',
       image: 'gradient-2',
-      tags: ['Angular 16', 'SSR', 'Stripe', 'Algolia', 'Material'],
-      category: 'ecommerce',
+      tags: ['Angular', 'Apache ECharts', 'TypeScript', 'RxJS'],
+      category: 'dashboard',
       features: [
-        'Server-Side Rendering with Angular Universal',
-        'Algolia-powered instant search',
-        'Stripe + PayPal checkout flows',
-        'Multi-currency & multi-language',
+        'Interactive charts with Apache ECharts',
+        'Dynamic data filtering and drill-down',
+        'Responsive dashboard layouts',
+        'Real-time data updates with RxJS streams',
       ],
-      demoUrl: '#',
-      repoUrl: '#',
       featured: true,
-      client: 'RetailMax',
       year: 2024,
     },
     {
       id: 'p3',
-      title: 'MediTrack Clinic Dashboard',
+      title: 'Consulting Engineering Platform',
       shortDescription:
-        'A clinical operations dashboard for hospitals — appointments, patients & analytics.',
+        'A responsive web platform for consulting engineering services with REST API integration.',
       description:
-        'An enterprise dashboard for healthcare. Handles 10k+ patients, role-based access, real-time queue management, and interactive analytics for hospital admins.',
+        'A web platform built for consulting engineering services, integrating REST APIs with typed models and interceptors, client-side routing, state management, and robust reactive form validation.',
       image: 'gradient-3',
-      tags: ['Angular 15', 'NgRx', 'WebSockets', 'Material', 'Jest'],
-      category: 'dashboard',
+      tags: ['Angular', 'REST APIs', 'SCSS', 'Bootstrap', 'TypeScript'],
+      category: 'web',
       features: [
-        'Role-based access (Doctor, Nurse, Admin, Patient)',
-        'Real-time appointment queue via WebSockets',
-        'Custom drag-and-drop scheduling',
-        'Full RTL + dark/light theme support',
+        'REST API integration with typed models & interceptors',
+        'Client-side routing & state management',
+        'Robust reactive form validation',
+        'Performance optimization (code-splitting, image optimization)',
       ],
-      demoUrl: '#',
       featured: true,
-      client: 'Nile Medical Group',
       year: 2023,
     },
     {
       id: 'p4',
-      title: 'Taskly — Project Management',
+      title: 'Bilingual Portfolio Platform',
       shortDescription:
-        'A Trello-inspired Kanban tool with real-time collaboration and team chat.',
+        'This portfolio — a bilingual (AR/EN) Angular app with full RTL support, theming, and Signals.',
       description:
-        'A modern project management app with drag-and-drop boards, real-time team collaboration using WebSockets, and full keyboard accessibility.',
+        'A fully bilingual portfolio built with modern Angular: standalone components, Signals, a custom lightweight i18n layer with instant AR/EN switching and RTL support, dark/light theming, and scroll-driven animations that respect reduced-motion preferences.',
       image: 'gradient-4',
-      tags: ['Angular 17', 'Signals', 'Socket.io', 'Bootstrap 5'],
+      tags: ['Angular', 'Signals', 'i18n', 'RTL', 'SCSS'],
       category: 'web',
       features: [
-        'Drag & drop boards with CDK',
-        'Real-time multi-user collaboration',
-        'Offline-first with IndexedDB',
-        'Keyboard-first accessible UI',
+        'Custom i18n with instant Arabic/English switching',
+        'Full RTL layout support',
+        'Dark/light theme with persisted preference',
+        'Accessible, reduced-motion-aware animations',
       ],
-      repoUrl: '#',
       featured: false,
-      year: 2024,
-    },
-    {
-      id: 'p5',
-      title: 'Lumen Blog — Developer Hub',
-      shortDescription:
-        'A blazing fast developer blogging platform with MDX, syntax highlight & SEO.',
-      description:
-        'A content-focused platform built with Angular Universal, MDX, and a custom CMS. Optimized for Core Web Vitals and SEO.',
-      image: 'gradient-5',
-      tags: ['Angular 16', 'SSR', 'MDX', 'Prisma', 'Tailwind'],
-      category: 'web',
-      features: [
-        'Server-side rendering & ISR-style caching',
-        'MDX with custom Angular renderer',
-        'Shiki syntax highlighting',
-        'Lighthouse score: 98/100',
-      ],
-      demoUrl: '#',
-      repoUrl: '#',
-      featured: false,
-      year: 2023,
-    },
-    {
-      id: 'p6',
-      title: 'FitPulse — Workout PWA',
-      shortDescription:
-        'Offline-first workout tracker PWA with custom plans and progress analytics.',
-      description:
-        'A fitness PWA that works fully offline. Users can create custom workout plans, track progress, and sync data when back online.',
-      image: 'gradient-6',
-      tags: ['Angular 17', 'PWA', 'IndexedDB', 'Signals', 'Charts.js'],
-      category: 'pwa',
-      features: [
-        'Fully offline-capable (Service Worker + IndexedDB)',
-        'Custom workout plan builder',
-        'Progress charts with Chart.js',
-        'Installable on iOS, Android & Desktop',
-      ],
-      demoUrl: '#',
-      featured: false,
-      year: 2024,
+      year: 2025,
     },
   ];
 
   readonly testimonials: Testimonial[] = [
     {
       id: 't1',
-      name: 'Sara El-Sayed',
-      role: 'Product Manager',
-      company: 'Brightware Tech',
-      avatar: 'SE',
+      name: 'Project Manager',
+      role: 'Project Manager',
+      company: 'Al Mnabr Consulting Engineering',
+      avatar: 'PM',
       message:
-        'Ahmed is one of the rare developers who deeply understands both the technical and product side. He shipped our most complex feature ahead of schedule and made it look easy.',
+        'Ahmed is a dedicated Angular developer who consistently delivered clean, modular code. His attention to performance and accessibility made a real difference in our projects.',
       rating: 5,
     },
     {
       id: 't2',
-      name: 'Mohamed Adel',
-      role: 'CTO',
-      company: 'NileBits Solutions',
-      avatar: 'MA',
+      name: 'Colleague',
+      role: 'Frontend Developer',
+      company: 'Al Mnabr Consulting Engineering',
+      avatar: 'CD',
       message:
-        'Working with Ahmed was a turning point for our frontend team. His code quality, attention to detail, and mentorship lifted the whole team to a new level.',
-      rating: 5,
-    },
-    {
-      id: 't3',
-      name: 'Layla Mostafa',
-      role: 'Lead Designer',
-      company: 'Codeforge Agency',
-      avatar: 'LM',
-      message:
-        'Finally, a developer who genuinely cares about design fidelity. Ahmed brings UI mockups to life pixel-perfect and suggests improvements that always enhance the UX.',
-      rating: 5,
-    },
-    {
-      id: 't4',
-      name: 'Karim Nassar',
-      role: 'Engineering Manager',
-      company: 'RetailMax',
-      avatar: 'KN',
-      message:
-        'Ahmed led the migration of our storefront to Angular 17. The result: 40% smaller bundle, faster TTI, and zero regressions in production.',
+        'Working with Ahmed was a great experience. He has a solid grasp of component-based architecture and always brings thoughtful suggestions to improve the codebase.',
       rating: 5,
     },
   ];

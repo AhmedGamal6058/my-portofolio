@@ -11,7 +11,7 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 50%;
+  inset-inline-start: 50%;
   width: 2px;
   background: linear-gradient(to bottom, transparent, var(--primary) 10%, var(--primary) 90%, transparent);
   transform: translateX(-50%);
@@ -20,18 +20,21 @@
 .timeline-item {
   position: relative;
   width: 50%;
-  padding: 1rem 2.5rem 2.5rem 0;
+  padding-block: 1rem;
+  padding-inline-end: 2.5rem;
+  padding-inline-start: 0;
 
   &.right {
-    margin-left: 50%;
-    padding: 1rem 0 2.5rem 2.5rem;
+    margin-inline-start: 50%;
+    padding-inline-end: 0;
+    padding-inline-start: 2.5rem;
   }
 }
 
 .timeline-dot {
   position: absolute;
   top: 1.5rem;
-  right: -22px;
+  inset-inline-end: -22px;
   width: 44px;
   height: 44px;
   display: grid;
@@ -50,8 +53,8 @@
   }
 }
 .timeline-item.right .timeline-dot {
-  right: auto;
-  left: -22px;
+  inset-inline-end: auto;
+  inset-inline-start: -22px;
 }
 
 .timeline-card {
@@ -177,18 +180,24 @@
 }
 
 @media (max-width: 768px) {
-  .timeline-line { left: 22px; }
+  .timeline-line { inset-inline-start: 22px; transform: none; }
   .timeline-item,
   .timeline-item.right {
     width: 100%;
-    margin-left: 0;
-    padding: 1rem 0 1.5rem 3rem;
+    margin-inline-start: 0;
+    padding-inline-start: 3rem;
+    padding-inline-end: 0;
   }
   .timeline-dot,
   .timeline-item.right .timeline-dot {
-    left: 0;
-    right: auto;
+    inset-inline-start: 0;
+    inset-inline-end: auto;
     width: 40px;
     height: 40px;
   }
 }
+
+/* ============================================
+   RTL: timeline & dot use logical properties
+   so they mirror naturally when [dir='rtl']
+   ============================================ */

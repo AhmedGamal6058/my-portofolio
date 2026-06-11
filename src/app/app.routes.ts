@@ -4,7 +4,7 @@ export const routes: Routes = [
   {
     path: '',
     loadComponent: () => import('./pages/home/home').then((m) => m.HomeComponent),
-    title: 'Ahmed Hassan | Angular Frontend Developer',
+    title: 'Ahmed Gamal | Angular Frontend Developer',
   },
   { path: '**', redirectTo: '' },
 ];

@@ -1,0 +1,165 @@
+<div class="sky" [class.visible]="isLight()" aria-hidden="true">
+  <!-- Sky gradient -->
+  <div class="sky-gradient"></div>
+
+  <!-- Atmospheric haze near horizon -->
+  <div class="sky-haze"></div>
+
+  <!-- Sun with rays (only visible in light mode) -->
+  <div class="sun-wrap">
+    <div class="sun-rays"></div>
+    <div class="sun-glow"></div>
+    <div class="sun"></div>
+  </div>
+
+  <!-- Realistic SVG clouds (cumulus) with multiple lobes -->
+  <svg class="cloud cloud-1" viewBox="0 0 220 110" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="cg1" cx="0.5" cy="0.3" r="0.9">
+        <stop offset="0%" stop-color="#ffffff"/>
+        <stop offset="65%" stop-color="#f4f8fc"/>
+        <stop offset="100%" stop-color="#dde6ef"/>
+      </radialGradient>
+      <filter id="cf1" x="-10%" y="-10%" width="120%" height="120%">
+        <feGaussianBlur stdDeviation="0.6"/>
+      </filter>
+    </defs>
+    <path filter="url(#cf1)"
+          d="M30 80
+             Q 18 80 16 65
+             Q 18 50 32 48
+             Q 36 30 58 28
+             Q 70 14 92 18
+             Q 110 6 132 14
+             Q 152 8 170 22
+             Q 192 22 198 40
+             Q 212 44 210 62
+             Q 208 80 188 82
+             L 38 82
+             Q 28 82 30 80 Z"
+          fill="url(#cg1)"/>
+    <path d="M 60 30 Q 100 22 140 30" fill="none" stroke="#ffffff" stroke-width="0" opacity="0.5"/>
+  </svg>
+
+  <svg class="cloud cloud-2" viewBox="0 0 260 130" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="cg2" cx="0.5" cy="0.3" r="0.95">
+        <stop offset="0%" stop-color="#ffffff"/>
+        <stop offset="60%" stop-color="#f5f9fd"/>
+        <stop offset="100%" stop-color="#d8e2ec"/>
+      </radialGradient>
+    </defs>
+    <path d="M 36 95
+             Q 18 95 16 78
+             Q 14 58 36 56
+             Q 40 36 64 34
+             Q 78 18 104 22
+             Q 124 8 150 18
+             Q 174 10 196 26
+             Q 220 26 232 46
+             Q 252 50 248 70
+             Q 246 92 222 96
+             L 50 96
+             Q 36 96 36 95 Z"
+          fill="url(#cg2)"/>
+  </svg>
+
+  <svg class="cloud cloud-3" viewBox="0 0 180 90" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="cg3" cx="0.5" cy="0.3" r="0.95">
+        <stop offset="0%" stop-color="#ffffff"/>
+        <stop offset="70%" stop-color="#f7fafd"/>
+        <stop offset="100%" stop-color="#e0e8f0"/>
+      </radialGradient>
+    </defs>
+    <path d="M 26 68
+             Q 12 68 12 54
+             Q 10 38 30 38
+             Q 32 22 52 20
+             Q 64 8 86 14
+             Q 104 6 122 16
+             Q 142 14 156 30
+             Q 174 32 170 50
+             Q 168 66 152 68
+             L 38 68
+             Q 26 68 26 68 Z"
+          fill="url(#cg3)"/>
+  </svg>
+
+  <svg class="cloud cloud-4" viewBox="0 0 240 120" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="cg4" cx="0.5" cy="0.3" r="0.95">
+        <stop offset="0%" stop-color="#ffffff"/>
+        <stop offset="65%" stop-color="#f3f7fb"/>
+        <stop offset="100%" stop-color="#d4dee8"/>
+      </radialGradient>
+    </defs>
+    <path d="M 32 92
+             Q 16 92 14 76
+             Q 12 56 34 54
+             Q 38 34 60 32
+             Q 74 16 98 20
+             Q 116 6 140 16
+             Q 164 8 186 24
+             Q 208 24 218 42
+             Q 234 46 232 64
+             Q 230 88 208 92
+             L 44 92
+             Q 32 92 32 92 Z"
+          fill="url(#cg4)"/>
+  </svg>
+
+  <svg class="cloud cloud-5" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="cg5" cx="0.5" cy="0.3" r="0.95">
+        <stop offset="0%" stop-color="#ffffff"/>
+        <stop offset="60%" stop-color="#f4f8fc"/>
+        <stop offset="100%" stop-color="#dae3ec"/>
+      </radialGradient>
+    </defs>
+    <path d="M 30 78
+             Q 14 78 12 62
+             Q 10 42 32 42
+             Q 36 24 58 22
+             Q 72 8 96 14
+             Q 116 4 138 18
+             Q 162 12 178 28
+             Q 196 32 192 52
+             Q 190 76 168 78
+             L 42 78
+             Q 30 78 30 78 Z"
+          fill="url(#cg5)"/>
+  </svg>
+
+  <svg class="cloud cloud-6" viewBox="0 0 160 80" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="cg6" cx="0.5" cy="0.3" r="0.95">
+        <stop offset="0%" stop-color="#ffffff"/>
+        <stop offset="70%" stop-color="#f8fbfd"/>
+        <stop offset="100%" stop-color="#e3ebf2"/>
+      </radialGradient>
+    </defs>
+    <path d="M 24 64
+             Q 10 64 10 50
+             Q 8 34 28 34
+             Q 30 18 50 18
+             Q 62 6 82 12
+             Q 100 4 118 14
+             Q 138 12 150 28
+             Q 162 30 158 48
+             Q 156 62 142 64
+             L 36 64
+             Q 24 64 24 64 Z"
+          fill="url(#cg6)"/>
+  </svg>
+
+  <!-- Birds silhouettes - refined V-shapes -->
+  <svg class="birds" viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+      <path class="bird b1" d="M10 20 Q 22 8 34 20 Q 46 8 58 20"/>
+      <path class="bird b2" d="M75 26 Q 84 16 93 26 Q 102 16 111 26"/>
+      <path class="bird b3" d="M130 14 Q 138 5 146 14 Q 154 5 162 14"/>
+      <path class="bird b4" d="M170 30 Q 178 22 186 30 Q 194 22 200 30"/>
+    </g>
+  </svg>
+</div>

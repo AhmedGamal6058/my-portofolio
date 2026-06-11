@@ -2,42 +2,45 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { PortfolioService } from '../../../../core/services/portfolio.service';
+import { I18nService } from '../../../../core/services/i18n.service';
+import { TranslatePipe } from '../../../../core/i18n/translate.pipe';
 
 interface Highlight {
   icon: string;
-  title: string;
-  text: string;
+  titleKey: string;
+  textKey: string;
 }
 
 @Component({
   selector: 'app-about',
-  imports: [CommonModule, MatIconModule],
+  imports: [CommonModule, MatIconModule, TranslatePipe],
   templateUrl: './about.html',
   styleUrl: './about.scss',
 })
 export class AboutComponent {
   protected readonly portfolio = inject(PortfolioService);
+  protected readonly i18n = inject(I18nService);
 
   protected readonly highlights: Highlight[] = [
     {
       icon: 'bi-lightning-charge-fill',
-      title: 'Performance First',
-      text: 'I obsess over Core Web Vitals, lazy loading, and bundle size to deliver lightning-fast experiences.',
+      titleKey: 'about.highlights.performance.title',
+      textKey: 'about.highlights.performance.text',
     },
     {
       icon: 'bi-diagram-3-fill',
-      title: 'Scalable Architecture',
-      text: 'Building modular, testable codebases with feature modules, smart/dumb components, and clean state management.',
+      titleKey: 'about.highlights.architecture.title',
+      textKey: 'about.highlights.architecture.text',
     },
     {
       icon: 'bi-universal-access',
-      title: 'Accessible by Default',
-      text: 'WCAG-compliant UI, full keyboard navigation, screen-reader friendly markup and RTL support.',
+      titleKey: 'about.highlights.accessibility.title',
+      textKey: 'about.highlights.accessibility.text',
     },
     {
       icon: 'bi-people-fill',
-      title: 'Team Player & Mentor',
-      text: 'Code reviews, pair-programming and mentoring — I lift the team around me as I grow.',
+      titleKey: 'about.highlights.team.title',
+      textKey: 'about.highlights.team.text',
     },
   ];
 }

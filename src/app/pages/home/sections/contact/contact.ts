@@ -54,8 +54,8 @@ export class ContactComponent {
     {
       icon: 'bi-envelope-at',
       label: 'Email',
-      value: 'ahmed.hassan.dev@example.com',
-      href: 'mailto:ahmed.hassan.dev@example.com',
+      value: 'ahmedgamalragab120@gmail.com',
+      href: 'mailto:ahmedgamalragab120@gmail.com',
     },
     {
       icon: 'bi-telephone',

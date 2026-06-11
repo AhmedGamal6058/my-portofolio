@@ -1,0 +1,69 @@
+<section id="education" class="section education">
+  <div class="container-x">
+    <div class="text-center reveal">
+      <span class="eyebrow"><i class="bi bi-mortarboard-fill"></i> {{ 'education.eyebrow' | t }}</span>
+      <h2 class="section-title">{{ 'education.title1' | t }} <span class="gradient-text">{{ 'education.titleHighlight' | t }}</span> {{ 'education.title2' | t }}</h2>
+      <p class="section-subtitle">
+        {{ 'education.subtitle' | t }}
+      </p>
+    </div>
+
+    <div class="edu-grid">
+      @for (edu of education; track edu.id; let i = $index) {
+        <article class="edu-card reveal" [style.animation-delay.ms]="i * 100">
+          <div class="edu-card-head">
+            <div class="edu-icon">
+              <mat-icon>school</mat-icon>
+            </div>
+            <div class="edu-period">
+              <i class="bi bi-calendar3"></i>
+              <span>{{ edu.period }}</span>
+            </div>
+          </div>
+
+          <h3 class="edu-degree">{{ edu.degree | t }} — {{ edu.degreeFull }}</h3>
+
+          <div class="edu-faculty">
+            <i class="bi bi-building"></i>
+            <span>{{ edu.facultyKey | t }}, {{ edu.university }}</span>
+          </div>
+
+          <div class="edu-meta">
+            <span class="edu-pill">
+              <i class="bi bi-geo-alt"></i> {{ edu.location }}
+            </span>
+            <span class="edu-pill grade-pill">
+              <i class="bi bi-award"></i>
+              {{ 'education.grade' | t }}: <strong>{{ edu.grade }}</strong>
+            </span>
+          </div>
+
+          <div class="edu-section">
+            <h4 class="edu-section-title">
+              <mat-icon>menu_book</mat-icon> {{ 'education.coursework' | t }}
+            </h4>
+            <ul class="course-list">
+              @for (c of edu.courses; track c) {
+                <li>
+                  <i class="bi bi-check2-circle"></i>
+                  <span>{{ c }}</span>
+                </li>
+              }
+            </ul>
+          </div>
+
+          <div class="edu-section">
+            <h4 class="edu-section-title">
+              <mat-icon>auto_awesome</mat-icon> {{ 'education.emphasis' | t }}
+            </h4>
+            <div class="emphasis-tags">
+              @for (tag of edu.emphasis.split(','); track tag) {
+                <span class="tag">{{ tag.trim() }}</span>
+              }
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

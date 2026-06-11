@@ -31,9 +31,10 @@
 .orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(90px);
-  opacity: 0.5;
-  animation: float 18s ease-in-out infinite;
+  filter: blur(110px);
+  opacity: 0.38;
+  mix-blend-mode: screen;
+  animation: float 22s ease-in-out infinite;
 }
 
 .orb-1 {
@@ -41,14 +42,14 @@
   height: 480px;
   background: radial-gradient(circle, #6366f1 0%, transparent 70%);
   top: -120px;
-  left: -120px;
+  inset-inline-start: -120px;
 }
 .orb-2 {
   width: 420px;
   height: 420px;
   background: radial-gradient(circle, #06b6d4 0%, transparent 70%);
   top: 35%;
-  right: -120px;
+  inset-inline-end: -120px;
   animation-delay: -6s;
 }
 .orb-3 {
@@ -56,9 +57,18 @@
   height: 380px;
   background: radial-gradient(circle, #ec4899 0%, transparent 70%);
   bottom: -100px;
-  left: 30%;
+  inset-inline-start: 30%;
   animation-delay: -12s;
 }
+
+/* In light mode, swap orbs to soft, warm tones with light blend */
+.is-light .orb {
+  mix-blend-mode: multiply;
+  opacity: 0.22;
+}
+.is-light .orb-1 { background: radial-gradient(circle, #fbbf24 0%, transparent 70%); } /* sun */
+.is-light .orb-2 { background: radial-gradient(circle, #60a5fa 0%, transparent 70%); } /* sky */
+.is-light .orb-3 { background: radial-gradient(circle, #f472b6 0%, transparent 70%); } /* accent */
 
 @keyframes float {
   0%, 100% { transform: translate(0, 0) scale(1); }
